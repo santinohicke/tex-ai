@@ -1,0 +1,35 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production builds
+build
+dist
+*.tar.gz
+
+# Environment files (Strict: Never commit actual keys or secrets)
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# Dynamic persistent chat storage
+data/chats/*.json
+!data/chats/.gitkeep
+
+# Operating System & IDE artifacts
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+.vscode/
+.idea/
