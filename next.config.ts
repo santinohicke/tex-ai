@@ -1,6 +1,6 @@
 const nextConfig = {
   output: "standalone",
-  serverExternalPackages: ["@anthropic-ai/sdk", "@google/genai"],
+  serverExternalPackages: ["@anthropic-ai/sdk"],
   typescript: {
     ignoreBuildErrors: true,
   },

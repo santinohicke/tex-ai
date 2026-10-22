@@ -42,10 +42,10 @@ En mesas de dinero, sociedades de bolsa (ALyCs), administradoras de fondos y ent
         (Búsqueda Semántica)                            (Inferencia LLM)
                   |                                               |
 +-----------------v-----------------+           +-----------------v-----------------+
-|   Motor Vectorial en Memoria      |           |     Capa LLM Multi-Proveedor     |
-| - Lematización en Español         |           | - Google Gemini 2.5 Flash         |
-| - Diccionario de Acrónimos        |           | - Anthropic Claude 3.5 Sonnet     |
-| - 14 Manuales / 100 Chunks RAG    |           | - Local AI Bridge / Fallback      |
+|   Motor Vectorial en Memoria      |           |    Motor de Inferencia LLM        |
+| - Lematización en Español         |           | - Anthropic Claude 3.5 Sonnet     |
+| - Diccionario de Acrónimos        |           | - Streaming Server-Sent Events    |
+| - 14 Manuales / 100 Chunks RAG    |           | - System Prompt Especializado     |
 +-----------------------------------+           +-----------------------------------+
                   |                                               |
                   +-----------------------+-----------------------+
@@ -67,8 +67,7 @@ En mesas de dinero, sociedades de bolsa (ALyCs), administradoras de fondos y ent
 * **Diccionario de Acrónimos Bursátiles:** Mapeo y expansión semántica de siglas financieras locales (`ON`, `FCI`, `MEP`, `CCL`, `ROFEX`, `CVSA`, `KYC`, `AML`).
 * **Ponderación Jerárquica y Frase Exacta:** Asignación ponderada de relevancia sobre títulos, secciones y cuerpo documental, garantizando sub-5ms de latencia en la recuperación de contexto sin requerir GPUs dedicadas.
 
-### Respuestas Naturales y Acordeón Desplegable
-* **Eliminación de Preámbulos Robóticos:** El asistente responde de forma ejecutiva y directa al punto solicitado, eliminando citas redundantes en prosa ("Conforme a lo indicado en el Documento Fuente 1...").
+### Respuestas Concisas y Acordeón Desplegable
 * **Acordeón Colapsable:** Las fuentes consultadas se transmiten al concluir la respuesta del modelo y se agrupan en un componente desplegable compacto (`Fuentes consultadas (N)`) para auditoría visual sin saturar la pantalla.
 
 ### Seguridad Bancaria y Cero Vulnerabilidades
@@ -111,7 +110,7 @@ La base documental precargada en `data/policies/` cubre exhaustivamente el ecosi
 ### Requisitos Previos
 * Node.js v20 o superior
 * Docker & Docker Compose (opcional para ejecución en contenedores)
-* Clave de API gratuita de [Google AI Studio](https://aistudio.google.com/) o [Anthropic Console](https://console.anthropic.com/)
+* Clave de API de [Anthropic Console](https://console.anthropic.com/)
 
 ### Paso 1: Clonar el Repositorio
 ```bash
@@ -126,8 +125,8 @@ cp .env.example .env.local
 ```
 Edita `.env.local`:
 ```env
-LLM_PROVIDER=gemini
-GEMINI_API_KEY=tu_clave_de_gemini_aqui
+ANTHROPIC_API_KEY=tu_clave_de_anthropic_aqui
+CLAUDE_MODEL=claude-3-5-sonnet-20241022
 ACCESS_TOKEN=TuTokenSecreto2026!
 AUTH_SECRET=cadena_aleatoria_de_al_menos_32_caracteres_para_firmar_cookies
 ```

@@ -3,7 +3,7 @@ import { LLMProvider } from './provider';
 import { LLMMessage } from '../rag/types';
 
 export class ClaudeProvider implements LLMProvider {
-  public name = 'Anthropic Claude (3.5 Sonnet / Haiku)';
+  public name = 'Anthropic Claude 3.5 Sonnet';
   private client: Anthropic;
 
   constructor() {

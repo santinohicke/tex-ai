@@ -10,13 +10,8 @@ export async function GET() {
     stats = vectorStore.getStats();
   }
 
-  const provider = process.env.LLM_PROVIDER || 'hybrid';
-  const model =
-    provider === 'claude'
-      ? process.env.CLAUDE_MODEL || 'claude-3-5-sonnet-20241022'
-      : provider === 'hybrid'
-      ? 'Gemini 3.8 Flash (High) via PC Bridge (Fallback: Gemini Flash-Lite Latest)'
-      : process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+  const provider = 'claude';
+  const model = process.env.CLAUDE_MODEL || 'claude-3-5-sonnet-20241022';
 
   return NextResponse.json({
     status: 'online',

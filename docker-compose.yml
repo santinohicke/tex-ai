@@ -9,9 +9,6 @@ services:
       - "3050:3050"
     environment:
       - NODE_ENV=production
-      - LLM_PROVIDER=${LLM_PROVIDER:-gemini}
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-3-5-sonnet-20241022}
       - ACCESS_TOKEN=${ACCESS_TOKEN:-Tex#Sec2026!Global_DemoKey}

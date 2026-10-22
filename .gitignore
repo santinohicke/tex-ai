@@ -26,6 +26,10 @@ dist
 data/chats/*.json
 !data/chats/.gitkeep
 
+# Python bytecode
+__pycache__/
+*.py[cod]
+
 # Operating System & IDE artifacts
 .DS_Store
 Thumbs.db
