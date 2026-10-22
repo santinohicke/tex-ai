@@ -1,5 +1,10 @@
 # Tex AI — Asistente Inteligente de Operaciones Financieras y Normativas (RAG)
 
+[![CI / Security Audit & Quality Verification](https://github.com/santinohicke/tex-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/santinohicke/tex-ai/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.2-black.svg)](https://nextjs.org/)
+
 > Sistema corporativo de asistencia operativa, bursátil y de cumplimiento normativo (RAG) impulsado por modelos LLM de última generación, motor de búsqueda semántica con lematización en español y arquitectura de persistencia liviana sin dependencias externas.
 
 ---
