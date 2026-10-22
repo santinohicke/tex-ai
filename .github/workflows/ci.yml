@@ -26,7 +26,7 @@ jobs:
       - name: Audit Code Against Sensitive IP Leaks and Personal Data
         run: |
           echo "Auditing codebase against private IPs and sensitive patterns..."
-          SUSPICIOUS=$(git grep -EI '100\.(106|75|117)\.|192\.168\.0\.|santinohick@|santinohickethier@' || true)
+          SUSPICIOUS=$(git grep -EI '100\.(106|75|117)\.|192\.168\.0\.|santinohick@|santinohickethier@' -- ':!.github' ':!.githooks' || true)
           if [ -n "$SUSPICIOUS" ]; then
             echo "ERROR: Sensitive private IP or personal email pattern detected:"
             echo "$SUSPICIOUS"
