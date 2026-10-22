@@ -75,7 +75,7 @@ export function getChat(id: string): ChatDetail | null {
 export function saveChat(chat: { id: string; title?: string; messages: ChatMessage[] }): ChatDetail {
   ensureDir();
   const now = Date.now();
-  let existing = getChat(chat.id);
+  const existing = getChat(chat.id);
 
   // Generar título automático si no existe o si tiene título por defecto
   let title = chat.title || existing?.title;

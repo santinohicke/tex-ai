@@ -17,7 +17,6 @@ import {
   ChevronDown,
   ChevronUp,
   MessageSquare,
-  Sparkles,
 } from 'lucide-react';
 
 interface Source {
@@ -79,6 +78,21 @@ export default function Home() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Cargar lista de chats desde el servidor
+  const loadChats = async () => {
+    try {
+      const res = await fetch('/api/chats');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.chats) {
+          setChats(data.chats);
+        }
+      }
+    } catch {
+      // Ignorar errores de red temporales
+    }
+  };
+
   // 1. Cargar estado de sesión
   useEffect(() => {
     fetch('/api/auth')
@@ -102,21 +116,6 @@ export default function Home() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isStreaming]);
-
-  // Cargar lista de chats desde el servidor
-  const loadChats = async () => {
-    try {
-      const res = await fetch('/api/chats');
-      if (res.ok) {
-        const data = await res.json();
-        if (data.chats) {
-          setChats(data.chats);
-        }
-      }
-    } catch {
-      // Ignorar errores de red temporales
-    }
-  };
 
   // Guardar chat actual en el servidor
   const persistChat = async (chatId: string, updatedMessages: Message[], customTitle?: string) => {

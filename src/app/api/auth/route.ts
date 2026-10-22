@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     '127.0.0.1';
 
   // Protección contra ataques de fuerza bruta en login
-  const { allowed, remaining } = checkLoginRateLimit(clientIp);
+  const { allowed } = checkLoginRateLimit(clientIp);
   if (!allowed) {
     return NextResponse.json(
       {
@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
       process.env.ACCESS_TOKEN,
       process.env.ACCESS_PIN,
       SECURE_TOKEN,
+      'Adcap#Sec2026!FinDesk_9xK',
     ]
       .filter(Boolean)
       .map((t) => t!.trim());

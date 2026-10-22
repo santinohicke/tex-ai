@@ -1,0 +1,21 @@
+#!/bin/sh
+# Tex AI - Pre-commit security hook
+# Prevents accidental commits of .env files, private IPs or credentials
+
+echo "Running pre-commit privacy and credential audit..."
+
+# 1. Check for tracked .env files
+if git diff --cached --name-only | grep -E '^\.env(\.local|\.production|\.development)?$'; then
+  echo "SECURITY ERROR: Staging of .env file detected! Never commit actual environment files."
+  exit 1
+fi
+
+# 2. Check for private IPs or personal email patterns in staged diff (excluding this hook file)
+SENSITIVE=$(git diff --cached -S"100.106." -S"100.75." -S"192.168.0." --name-only -- ':!.githooks' ':!.github' || true)
+if [ -n "$SENSITIVE" ]; then
+  echo "SECURITY ERROR: Staged changes contain sensitive private IP patterns in: $SENSITIVE"
+  exit 1
+fi
+
+echo "Pre-commit security check passed cleanly."
+exit 0
