@@ -1,24 +1,26 @@
 import { NextResponse } from 'next/server';
-import { vectorStore } from '@/lib/rag/vector-store';
-import path from 'path';
+import { getRagPipeline } from '@/lib/rag/engine';
+import { EMBEDDING_MODEL, embeddingsEnabled } from '@/lib/rag/embeddings';
+import { FAST_MODEL } from '@/lib/rag/llm-json';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  let stats = vectorStore.getStats();
-  if (stats.chunksCount === 0) {
-    const policiesDir = path.join(process.cwd(), 'data', 'policies');
-    vectorStore.init(policiesDir);
-    stats = vectorStore.getStats();
-  }
-
-  const provider = 'claude';
-  const model = process.env.CLAUDE_MODEL || 'claude-3-5-sonnet-20241022';
-
+  const rag = getRagPipeline();
   return NextResponse.json({
     status: 'online',
     system: 'Tex AI - Internal Financial Operations Assistant',
-    provider,
-    model,
-    indexedDocuments: stats.documents,
-    totalChunks: stats.chunksCount,
+    provider: 'anthropic',
+    model: process.env.CLAUDE_MODEL || 'claude-opus-5-5',
+    retrieval: {
+      strategy: embeddingsEnabled()
+        ? 'query rewrite → hybrid BM25 + dense (convex fusion) → Claude rerank → evidence threshold → cited generation'
+        : 'query rewrite → BM25 → Claude rerank → evidence threshold → cited generation',
+      embeddingModel: embeddingsEnabled() ? EMBEDDING_MODEL : null,
+      rerankModel: FAST_MODEL,
+    },
+    indexedDocuments: Array.from(new Set(rag.chunks.map((c) => c.sourceDoc))),
+    totalChunks: rag.chunks.length,
   });
 }
