@@ -1,6 +1,13 @@
 {
   "name": "tex-ai",
   "version": "0.1.0",
+  "description": "Tex AI: asistente RAG de operaciones financieras y normativas (Next.js + Anthropic Claude)",
+  "author": "Santino Hickethier",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santinohicke/tex-ai.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
