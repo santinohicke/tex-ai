@@ -70,7 +70,7 @@ En mesas de dinero, sociedades de bolsa (ALyCs), administradoras de fondos y ent
 ### Respuestas Concisas y Acordeón Desplegable
 * **Acordeón Colapsable:** Las fuentes consultadas se transmiten al concluir la respuesta del modelo y se agrupan en un componente desplegable compacto (`Fuentes consultadas (N)`) para auditoría visual sin saturar la pantalla.
 
-### Seguridad Bancaria y Cero Vulnerabilidades
+### Seguridad y Control de Acceso
 * **Firma Criptográfica de Sesiones:** Cookies firmadas con algoritmo **HMAC-SHA256** y comparación en tiempo constante (`timingSafeEqual`), neutralizando ataques de suplantación o manipulación de estado.
 * **Control de Frecuencia (Rate Limiting Doble):** 
   - Protección anti-fuerza bruta en login (máximo 5 intentos por minuto por IP).
