@@ -127,7 +127,7 @@ Edita `.env.local`:
 ```env
 ANTHROPIC_API_KEY=tu_clave_de_anthropic_aqui
 CLAUDE_MODEL=claude-3-5-sonnet-20241022
-ACCESS_TOKEN=TuTokenSecreto2026!
+ACCESS_TOKEN=tu_token_de_acceso_aqui
 AUTH_SECRET=cadena_aleatoria_de_al_menos_32_caracteres_para_firmar_cookies
 ```
 
