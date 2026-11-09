@@ -1,0 +1,2136 @@
+[
+  {
+    "id": "TEX-API-012-d1",
+    "type": "direct",
+    "question": "¿Qué protocolo utiliza la firma para el acceso directo de ruteo de órdenes de clientes institucionales?",
+    "evidence": [
+      "acceso directo de ruteo de órdenes mediante el protocolo estándar Financial Information eXchange (FIX v4.4)."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-d2",
+    "type": "direct",
+    "question": "¿Qué valor debe enviarse en el Tag 54 para indicar una operación de venta?",
+    "evidence": [
+      "Tag 54 (Side): Sentido de la operación (1 para Compra / Buy, 2 para Venta / Sell)."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-d3",
+    "type": "direct",
+    "question": "¿Cuál es el porcentaje máximo de desviación permitido por el filtro Fat-Finger respecto al último precio operado?",
+    "evidence": [
+      "Rechazo automático de órdenes cuyo precio diste más de un 10% del último precio operado en el mercado."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-d4",
+    "type": "direct",
+    "question": "¿Cuál es la duración y el tiempo de expiración de los tokens Bearer JWT para la autenticación en la API REST?",
+    "evidence": [
+      "Tokens Bearer JWT de corta duración (expiración: 15 minutos) emitidos mediante intercambio de claves"
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-d5",
+    "type": "direct",
+    "question": "¿Cuál es la latencia promedio estimada de los enlaces dedicados hacia el Data Center de BYMA para el streaming de cotizaciones?",
+    "evidence": [
+      "Latencia promedio en enlaces dedicados: inferior a 5 milisegundos hacia el Data Center de BYMA."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Dónde puedo consultar el listado de tags que se usan en las órdenes FIX?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y cuál es el tag que identifica de forma única la orden creada por el cliente?",
+    "evidence": [
+      "Tag 11 (ClOrdID): Identificador unívoco de orden generado por el cliente."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué validaciones automáticas se ejecutan antes de mandar los mensajes a BYMA?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y qué pasa si me equivoco tipeando el precio y cruza ese límite?",
+    "evidence": [
+      "Control de Precios Fuera de Banda (Fat-Finger Filter): Rechazo automático de órdenes cuyo precio diste más de un 10% del último precio operado en el mercado."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-p1",
+    "type": "paraphrase",
+    "question": "¿Cómo se conectan los fondos y mesas quant para mandar órdenes?",
+    "evidence": [
+      "Para clientes institucionales, mesas de arbitraje y algoritmos cuantitativos de alta frecuencia, la firma provee acceso directo de ruteo de órdenes"
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-p2",
+    "type": "paraphrase",
+    "question": "¿Con qué número informo que quiero dar salida a mis papeles?",
+    "evidence": [
+      "Tag 54 (Side): Sentido de la operación (1 para Compra / Buy, 2 para Venta / Sell)."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-p3",
+    "type": "paraphrase",
+    "question": "¿A partir de qué desvío porcentual salta el control por dedo gordo en las cotizaciones?",
+    "evidence": [
+      "Control de Precios Fuera de Banda (Fat-Finger Filter): Rechazo automático de órdenes cuyo precio diste más de un 10%"
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-p4",
+    "type": "paraphrase",
+    "question": "¿Cada cuánto vencen las credenciales temporales para pegarle a los endpoints?",
+    "evidence": [
+      "Autenticación: Tokens Bearer JWT de corta duración (expiración: 15 minutos) emitidos mediante intercambio de claves"
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-API-012-p5",
+    "type": "paraphrase",
+    "question": "¿Cuántos milisegundos tarda en promedio el streaming de puntas hasta el mercado?",
+    "evidence": [
+      "Latencia promedio en enlaces dedicados: inferior a 5 milisegundos hacia el Data Center de BYMA."
+    ],
+    "doc": "TEX-API-012_Protocolos_Fix_Rest_Trading_Algoritmico.md"
+  },
+  {
+    "id": "TEX-CMP-005-d1",
+    "type": "direct",
+    "question": "¿Qué ley y qué resoluciones de qué organismo rigen estrictamente la actividad de la ALyC?",
+    "evidence": [
+      "rigen estrictamente la Ley N° 25.246, resoluciones de la Unidad de Información Financiera (UIF)"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d2",
+    "type": "direct",
+    "question": "¿Qué perfil de clientes queda encuadrado dentro del nivel de Riesgo Medio?",
+    "evidence": [
+      "Profesionales independientes, PyMEs locales con operatoria regular de financiamiento de cheques y pagarés bursátiles."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d3",
+    "type": "direct",
+    "question": "¿Qué medida toma automáticamente el sistema si un cliente excede su perfil en un período de 12 meses móviles?",
+    "evidence": [
+      "el sistema bloquea preventivamente nuevos ingresos de fondos y emite una alerta a Compliance."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d4",
+    "type": "direct",
+    "question": "¿Cuántos recibos de haberes deben solicitarse a los trabajadores en relación de dependencia para ampliar su perfil transaccional?",
+    "evidence": [
+      "Recibos de haberes de los últimos 3 meses para trabajadores en relación de dependencia."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d5",
+    "type": "direct",
+    "question": "¿A partir de qué porcentaje de tenencia accionaria o derechos de voto se debe identificar al beneficiario final de una persona jurídica?",
+    "evidence": [
+      "acreditando personería física de cualquier individuo que posea el 10% o más del capital o derecho a voto."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d6",
+    "type": "direct",
+    "question": "¿Qué autorización formal e indelegable se exige para abrir una cuenta calificada como PEP?",
+    "evidence": [
+      "Toda cuenta calificada como PEP requiere aprobación indelegable del Oficial de Cumplimiento Titular"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d7",
+    "type": "direct",
+    "question": "¿Con qué periodicidad se controla la base de comitentes contra el registro nacional de personas vinculadas a actos terroristas?",
+    "evidence": [
+      "Chequeo automatizado diario de la base de comitentes contra el Registro Público de Personas y Entidades Vinculadas a Actos de Terrorismo"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-d8",
+    "type": "direct",
+    "question": "¿Qué consecuencias legales recaen sobre el personal que viole la reserva y alerte a un cliente sobre un reporte?",
+    "evidence": [
+      "bajo pena de sanciones penales previstas en el Art. 22 de la Ley 25.246."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo se controlan los límites operativos anuales de los comitentes?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y qué pasa si superan el tope?",
+    "evidence": [
+      "el sistema bloquea preventivamente nuevos ingresos de fondos y emite una alerta a Compliance."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-f4",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué documentación respalda la solicitud de ampliación de perfil transaccional de un cliente?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si es en relación de dependencia?",
+    "evidence": [
+      "Recibos de haberes de los últimos 3 meses para trabajadores en relación de dependencia."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p1",
+    "type": "paraphrase",
+    "question": "¿Qué pautas del ente del mercado de capitales tenemos que cumplir acá?",
+    "evidence": [
+      "normativas de la Comisión Nacional de Valores (CNV)."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p2",
+    "type": "paraphrase",
+    "question": "¿A quiénes metemos en la escala más tranqui?",
+    "evidence": [
+      "Clientes asalariados con ingresos bancarizados demostrables que operan montos dentro de su perfil transaccional promedio"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p3",
+    "type": "paraphrase",
+    "question": "¿De qué manera definimos el techo de guita para operar cuando damos el alta?",
+    "evidence": [
+      "determinado por la documentación de respaldo aportada al momento del Onboarding o en revisiones periódicas."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p4",
+    "type": "paraphrase",
+    "question": "¿Quién tiene que rubricar la constancia patrimonial de un autónomo?",
+    "evidence": [
+      "firmada por Contador Público matriculado y certificada ante el Consejo Profesional de Ciencias Económicas"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p5",
+    "type": "paraphrase",
+    "question": "Para una sociedad, ¿dónde tiene que estar asentada la designación de las autoridades actuales?",
+    "evidence": [
+      "Acta de Directorio con distribución de cargos vigente inscripta en IGJ o Registro Público correspondiente."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p6",
+    "type": "paraphrase",
+    "question": "¿Cada cuánto tiempo hay que poner al día la carpeta si labura en el gobierno?",
+    "evidence": [
+      "actualización semestral del legajo."
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p7",
+    "type": "paraphrase",
+    "question": "¿Con qué padrones del exterior cruzamos a los usuarios?",
+    "evidence": [
+      "Oficina de Control de Activos Extranjeros (OFAC) de los Estados Unidos y resoluciones del Consejo de Seguridad de las Naciones Unidas"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-CMP-005-p8",
+    "type": "paraphrase",
+    "question": "¿En qué casos le mandamos la alerta al organismo si salta un movimiento turbio?",
+    "evidence": [
+      "Cuando una operación o intento de operación resulte inusual, carezca de justificación económica o jurídica razonable"
+    ],
+    "doc": "TEX-CMP-005_Prevencion_Lavado_Dinero_UIF.md"
+  },
+  {
+    "id": "TEX-EQT-008-d1",
+    "type": "direct",
+    "question": "¿Qué representan las acciones según el marco operativo de BYMA?",
+    "evidence": [
+      "Las acciones representan partes alícuotas del capital social de sociedades anónimas"
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-d2",
+    "type": "direct",
+    "question": "¿Qué porcentaje del volumen bursátil de acciones locales concentra el Panel Líder?",
+    "evidence": [
+      "Concentra más del 85% del volumen bursátil de acciones locales."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-d3",
+    "type": "direct",
+    "question": "¿En qué horario se realiza la Subasta de Cierre y cuál es su objetivo?",
+    "evidence": [
+      "Subasta de Cierre (Closing Call): 16:55 a 17:00 hs para fijación de precio oficial de cierre contable."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-d4",
+    "type": "direct",
+    "question": "¿Con qué antelación respecto a la Fecha de Registro se establece la Fecha Ex-Cupón?",
+    "evidence": [
+      "48 horas hábiles bursátiles antes de la fecha de registro (Record Date)."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-d5",
+    "type": "direct",
+    "question": "¿Cuál es el propósito de un Reverse Split o consolidación?",
+    "evidence": [
+      "Agrupamiento de acciones para elevar el valor unitario de cotización."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-d6",
+    "type": "direct",
+    "question": "¿Qué beneficio otorgan las ampliaciones de capital a los accionistas existentes?",
+    "evidence": [
+      "Las ampliaciones de capital otorgan a los accionistas existentes el derecho preferente a suscribir nuevas acciones"
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuáles son los plazos de liquidación para operaciones de renta variable?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y en contado inmediato?",
+    "evidence": [
+      "La liquidación de los títulos y el dinero ocurre en la misma jornada de concertación (T+0)."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-f4",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "Un cliente consulta por el circuito de acreditación de dividendos en acciones argentinas."
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y la fecha de pago?",
+    "evidence": [
+      "Día en el que los fondos o nuevas acciones se acreditan automáticamente en la subcuenta comitente."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p1",
+    "type": "paraphrase",
+    "question": "¿Quién tiene que dar el ok para que una empresa liste sus títulos acá en la plaza local?",
+    "evidence": [
+      "registradas en el régimen de oferta pública de la CNV y autorizadas para cotizar en Bolsas y Mercados Argentinos (BYMA)."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p2",
+    "type": "paraphrase",
+    "question": "¿Por qué en las empresas chicas hay tanta brecha entre lo que te piden y lo que están dispuestos a pagar?",
+    "evidence": [
+      "Su operatoria puede tener menor liquidez y mayores spreads entre la mejor oferta de compra (Bid) y de venta (Ask)."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p3",
+    "type": "paraphrase",
+    "question": "Si quiero calzar una operación en el acto, ¿hace falta tener la plata ya disponible en la comitente?",
+    "evidence": [
+      "Requiere fondos líquidos acreditados al momento de ingresar la orden."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p4",
+    "type": "paraphrase",
+    "question": "¿Quién confecciona el padrón que define a qué clientes les toca la guita?",
+    "evidence": [
+      "Fecha de corte contable donde Caja de Valores S.A. determina la nómina oficial de tenedores con derecho al cobro."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p5",
+    "type": "paraphrase",
+    "question": "Si una empresa parte sus papeles a la mitad, ¿el inversor sale perdiendo guita en su tenencia total?",
+    "evidence": [
+      "No modifica el valor patrimonial de la cartera."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-EQT-008-p6",
+    "type": "paraphrase",
+    "question": "Che, si sobraron papeles que nadie quiso, ¿los que ya entraron tienen chance de llevarse un pucho extra según su posición?",
+    "evidence": [
+      "los accionistas que ejercieron su preferencia pueden ejercer el derecho de acrecer de manera proporcional a su tenencia."
+    ],
+    "doc": "TEX-EQT-008_Acciones_Locales_Panel_Lider_BYMA.md"
+  },
+  {
+    "id": "TEX-FCI-001-d1",
+    "type": "direct",
+    "question": "¿Cuál es el horario de corte para registrar suscripciones y rescates de money market en el mismo día hábil?",
+    "evidence": [
+      "16:30 hs para suscripciones y rescates con liquidación en el mismo día hábil."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-d2",
+    "type": "direct",
+    "question": "¿A qué valor de cuotaparte se procesan las órdenes de fondos de renta fija cargadas después de las 15:00 hs?",
+    "evidence": [
+      "Las órdenes ingresadas con posterioridad se procesan con el valor de cuotaparte (NAV) del día hábil posterior."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-d3",
+    "type": "direct",
+    "question": "¿Bajo qué normativa del BCRA ajustan los títulos soberanos de los fondos de cobertura dólar linked?",
+    "evidence": [
+      "Títulos soberanos ajustables por Comunicación \"A\" 3500 del BCRA (Dólar Oficial)"
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-d4",
+    "type": "direct",
+    "question": "¿Qué requisito de saldo y moneda debe cumplir la cuenta comitente para poder suscribir un fondo?",
+    "evidence": [
+      "El comitente debe contar con saldo líquido disponible en cuenta en la moneda del fondo (Pesos ARS o Dólares USD Clase B)."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-d5",
+    "type": "direct",
+    "question": "¿Qué retenciones arancelarias se calculan al momento de solicitar el rescate de un fondo?",
+    "evidence": [
+      "Al momento del rescate se calcula la retención de aranceles de administración y custodia según el reglamento de gestión del fondo."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-d6",
+    "type": "direct",
+    "question": "¿Cómo tributan las personas jurídicas en el Impuesto a las Ganancias por sus inversiones en fondos comunes?",
+    "evidence": [
+      "Grava Impuesto a las Ganancias por régimen general de devengamiento según balance anual."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-f1",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo funciona la operatoria de los fondos comunes de inversión de money market?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y el horario de corte?",
+    "evidence": [
+      "16:30 hs para suscripciones y rescates con liquidación en el mismo día hábil."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-f4",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuáles son las condiciones de saldo requeridas para cursar suscripciones de fondos comunes de inversión?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y si es en dólares?",
+    "evidence": [
+      "El comitente debe contar con saldo líquido disponible en cuenta en la moneda del fondo (Pesos ARS o Dólares USD Clase B)."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p1",
+    "type": "paraphrase",
+    "question": "Che, ¿este pozo puede llegar a ir para atrás alguna rueda o siempre suma?",
+    "evidence": [
+      "Devengamiento diario compuesto. No presenta días con rendimiento negativo."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p2",
+    "type": "paraphrase",
+    "question": "Che, ¿qué instrumentos trae adentro esta cartera que terminen antes de un año y medio?",
+    "evidence": [
+      "Letras del Tesoro (LECAPs, BONCAPs), pagarés bursátiles avalados y bonos soberanos con vencimiento inferior a 18 meses."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p3",
+    "type": "paraphrase",
+    "question": "Che, ¿con las cotizaciones de qué plaza se mueven los números al final de la rueda?",
+    "evidence": [
+      "Sujetos a fluctuación de mercado según precios de cierre BYMA."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p4",
+    "type": "paraphrase",
+    "question": "Che, ¿cómo frena el sistema si la oscilación de la cartera se pasa de lo que banca el usuario?",
+    "evidence": [
+      "la volatilidad del fondo no puede superar el nivel de riesgo tolerado registrado por el cliente."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p5",
+    "type": "paraphrase",
+    "question": "Che, ¿de qué dos formas le cargo la salida al chabón: guita total o número de pedazos?",
+    "evidence": [
+      "La orden de rescate puede solicitarse por importe monetario o por cantidad de cuotapartes."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FCI-001-p6",
+    "type": "paraphrase",
+    "question": "Che, ¿qué porción de deuda estatal tiene que juntar la cartera para que un tipo común zafe de tributar?",
+    "evidence": [
+      "activo subyacente esté integrado en al menos un 75% por activos exentos (títulos públicos nacionales y provinciales)."
+    ],
+    "doc": "TEX-FCI-001_Fondos_Comunes_Inversion.md"
+  },
+  {
+    "id": "TEX-FUT-003-d1",
+    "type": "direct",
+    "question": "¿Qué beneficio otorgan los contratos de futuros de moneda a los participantes del mercado?",
+    "evidence": [
+      "permiten a los participantes del mercado fijar el precio del tipo de cambio oficial para fechas de vencimiento futuras"
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-d2",
+    "type": "direct",
+    "question": "¿Cuál es el activo subyacente que toma como referencia el contrato de futuros de dólar oficial?",
+    "evidence": [
+      "Tipo de cambio de referencia del BCRA Comunicación \"A\" 3500 (Mayorista)."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-d3",
+    "type": "direct",
+    "question": "¿Cuál es el porcentaje aproximado del valor nocional que exige ACyRSA como margen de garantía inicial?",
+    "evidence": [
+      "Representa aproximadamente entre el 12% y el 18% del valor nocional del contrato."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-d4",
+    "type": "direct",
+    "question": "¿A qué hora y quién determina el precio de ajuste diario para las diferentes mensualidades de futuros?",
+    "evidence": [
+      "Al cierre de cada jornada de negociación (17:00 hs), ACyRSA fija el precio de ajuste del día para cada mensualidad."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-d5",
+    "type": "direct",
+    "question": "¿Qué es la prima en una opción financiera y en qué plazo debe pagarse?",
+    "evidence": [
+      "El precio que abona el comprador de la opción al lanzador (vendedor) en el momento de la concertación en plazo T+1."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-d6",
+    "type": "direct",
+    "question": "¿Cuál es la fecha de vencimiento habitual para los contratos de opciones financieras en BYMA?",
+    "evidence": [
+      "La fecha de vencimiento habitual es el tercer viernes de los meses pares."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuáles son las condiciones y especificaciones para operar futuros de dólar oficial?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si el cliente pide billete físico al vencimiento?",
+    "evidence": [
+      "No existe entrega física de billetes."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-f4",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo funciona el proceso de liquidación diaria por diferencias de futuros?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y el horario de corte?",
+    "evidence": [
+      "Al cierre de cada jornada de negociación (17:00 hs), ACyRSA fija el precio de ajuste del día para cada mensualidad."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p1",
+    "type": "paraphrase",
+    "question": "¿De qué forma resguarda a una firma importadora frente a las oscilaciones del billete?",
+    "evidence": [
+      "mitigando el riesgo cambiario comercial."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p2",
+    "type": "paraphrase",
+    "question": "¿Al finalizar la operación me dan los verdes en mano o me transfieren la plata?",
+    "evidence": [
+      "Exclusivamente financiera por diferencias en pesos (Non-Deliverable / Cash Settlement). No existe entrega física de billetes."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p3",
+    "type": "paraphrase",
+    "question": "¿En qué momento le liberan la plata retenida al comitente si ya cerró la rueda?",
+    "evidence": [
+      "El margen depositado queda inmovilizado hasta la cancelación de la posición o el vencimiento del contrato."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p4",
+    "type": "paraphrase",
+    "question": "¿Si salí arriba en la rueda, cuándo impacta el cobro para poder retirarlo?",
+    "evidence": [
+      "Si la posición arroja ganancia, el dinero se acredita en la cuenta del cliente a primera hora de la mañana siguiente (T+1)."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p5",
+    "type": "paraphrase",
+    "question": "¿Qué boleto me asegura poder revolear la tenencia a un valor pactado si la cosa se pone fea?",
+    "evidence": [
+      "Otorga al comprador el derecho de vender el activo subyacente al precio de ejercicio."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FUT-003-p6",
+    "type": "paraphrase",
+    "question": "¿El cliente tiene miedo de que se haga percha el merval, cómo le blindamos el portafolio para que no se desangre?",
+    "evidence": [
+      "Compra de opciones Put sobre tenencias de acciones para fijar un piso máximo de pérdida ante caídas abruptas del mercado."
+    ],
+    "doc": "TEX-FUT-003_Derivados_Futuros_Opciones_MatbaRofex.md"
+  },
+  {
+    "id": "TEX-FX-009-d1",
+    "type": "direct",
+    "question": "¿A través de qué compendio normativo regula el BCRA el acceso al mercado de cambios formal para comprar moneda extranjera?",
+    "evidence": [
+      "Banco Central de la República Argentina (BCRA) mediante su Texto Ordenado de Exterior y Cambios."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-d2",
+    "type": "direct",
+    "question": "¿Cuál es la documentación mandatoria exigida a las empresas importadoras para cursar pagos en el MULC?",
+    "evidence": [
+      "Despacho de importación oficializado, factura comercial definitiva, documento de transporte (Bill of Lading / Guía Aérea)"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-d3",
+    "type": "direct",
+    "question": "¿Qué plazos rigen para que los exportadores ingresen y liquiden sus cobros en el mercado de cambios?",
+    "evidence": [
+      "dentro de los plazos establecidos según la posición arancelaria (entre 15 y 180 días corridos desde el cumplido de embarque)."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-d4",
+    "type": "direct",
+    "question": "¿Con qué operatorias del mercado de capitales resulta incompatible el acceso a divisas en el MULC?",
+    "evidence": [
+      "operatoria de dólares financieros en el mercado de capitales (Dólar MEP y Contado con Liquidación)."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-d5",
+    "type": "direct",
+    "question": "¿Qué requisito debe cumplimentar el comitente al cursar una orden de venta de valores negociables en especie D o C?",
+    "evidence": [
+      "el comitente debe firmar digitalmente una Declaración Jurada declarando bajo fe de juramento"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-d6",
+    "type": "direct",
+    "question": "¿Qué condición crediticia con el BCRA impide a un cliente operar Dólar MEP o CCL mientras adeude cuotas?",
+    "evidence": [
+      "refinanciaciones crediticias obligatorias o créditos a tasa subsidiada fijados por el BCRA mientras persistan cuotas impagas."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo funciona el régimen cambiario para las empresas que venden mercadería afuera?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y los plazos para liquidar?",
+    "evidence": [
+      "entre 15 y 180 días corridos desde el cumplido de embarque"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-f6",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Quiénes tienen trabas normativas para acceder a los dólares financieros?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si tienen subsidios en la luz o el gas?",
+    "evidence": [
+      "Mantengan subsidios vigentes en tarifas de servicios públicos (electricidad, gas natural o agua corriente)"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p1",
+    "type": "paraphrase",
+    "question": "¿Quién fija los requisitos si un cliente necesita verdes vía ventanilla tradicional?",
+    "evidence": [
+      "está regulado exhaustivamente por el Banco Central de la República Argentina (BCRA)"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p2",
+    "type": "paraphrase",
+    "question": "¿Bajo qué cronograma le sueltan los verdes a quienes traen mercadería de afuera?",
+    "evidence": [
+      "calendarios de pago diferido autorizados por el BCRA a partir del registro aduanero oficial."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p3",
+    "type": "paraphrase",
+    "question": "¿El que factura laburos afuera tiene el deber de traer la plata y pasarla a pesos?",
+    "evidence": [
+      "Todo exportador de bienes y servicios está legalmente obligado a ingresar y liquidar las divisas percibidas en el mercado de cambios"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p4",
+    "type": "paraphrase",
+    "question": "¿Chocan las compras al costo del gobierno con mover guita por la bolsa?",
+    "evidence": [
+      "Rige una estricta incompatibilidad entre el acceso a divisas a precio oficial (MULC)"
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p5",
+    "type": "paraphrase",
+    "question": "¿Cuánto tiempo tiene que esperar el inversor para pedir billete mayorista si se desprendió de bonos?",
+    "evidence": [
+      "no acceder al mercado de cambios durante los 90 días corridos posteriores a la liquidación de la operación bursátil."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-FX-009-p6",
+    "type": "paraphrase",
+    "question": "¿Si una pyme cobró el auxilio del gobierno en la pandemia le bloquean hacer cable?",
+    "evidence": [
+      "asistencia financiera extraordinaria del Estado Nacional durante emergencias sanitarias o productivas."
+    ],
+    "doc": "TEX-FX-009_Regimen_Cambiario_MULC_Comunicaciones_BCRA.md"
+  },
+  {
+    "id": "TEX-GLOS-012-d1",
+    "type": "direct",
+    "question": "¿Cuál es el plazo de parking vigente para que una persona humana pueda vender AL30D?",
+    "evidence": [
+      "actualmente 1 día hábil para personas humanas"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-d2",
+    "type": "direct",
+    "question": "¿En qué cuenta específica se acredita la liquidación de divisas tras vender contra especie D?",
+    "evidence": [
+      "La liquidación de dólares se acredita en la subcuenta comitente USD local."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-d3",
+    "type": "direct",
+    "question": "¿Cómo se define el Ratio de Canje entre el Dólar MEP y el Dólar Cable?",
+    "evidence": [
+      "Es el costo o spread porcentual entre el Dólar MEP (local) y el Dólar Cable (exterior)."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-d4",
+    "type": "direct",
+    "question": "¿Qué entidad bancaria se encarga de emitir los certificados de depósito de acciones extranjeras en el país?",
+    "evidence": [
+      "Certificados emitidos por el Banco Comafi"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-d5",
+    "type": "direct",
+    "question": "¿A qué hora liquida activos automáticamente el Trading Desk ante un Margin Call en cauciones tomadoras?",
+    "evidence": [
+      "el Trading Desk liquida activos automáticamente a las 15:00 hs para cancelar el préstamo."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-f1",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo es el procedimiento general para operar Dólar MEP con bonos soberanos?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y el parking para personas humanas?",
+    "evidence": [
+      "actualmente 1 día hábil para personas humanas"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-f5",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo actúa la mesa si un cliente en caución tomadora cae en Margin Call?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y el horario de corte para la liquidación?",
+    "evidence": [
+      "el Trading Desk liquida activos automáticamente a las 15:00 hs para cancelar el préstamo."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-p1",
+    "type": "paraphrase",
+    "question": "¿Con qué papeles de deuda estatal que mueven mucha guita se suele armar la movida?",
+    "evidence": [
+      "Títulos públicos soberanos con alta liquidez (ej. AL30 / GD30)."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-p2",
+    "type": "paraphrase",
+    "question": "¿Quiénes quedan bloqueados para comprar billete por tener ayuda del gobierno en la factura de luz o gas?",
+    "evidence": [
+      "No pueden operar MEP clientes que hayan accedido a subsidios de tarifas de servicios públicos, créditos a tasa subsidiada"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-p3",
+    "type": "paraphrase",
+    "question": "¿Qué depositarias foráneas cuidan los verdes girados afuera?",
+    "evidence": [
+      "dólares transferidos a una cuenta bancaria radicada en el exterior, bajo custodia de Euroclear o DTC"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-p4",
+    "type": "paraphrase",
+    "question": "¿Qué porcentaje se queda el fisco yanqui de las utilidades distribuidas por las firmas de afuera?",
+    "evidence": [
+      "descontando retenciones impositivas de origen (IRS 30% en USA)"
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-GLOS-012-p5",
+    "type": "paraphrase",
+    "question": "¿Cuáles son las duraciones que concentran casi todo el negocio?",
+    "evidence": [
+      "El plazo de mayor volumen es a 1 día hábil y 7 días."
+    ],
+    "doc": "TEX-GLOS-012_Instrumentos_MEP_CEDEARs_Cauciones.md"
+  },
+  {
+    "id": "TEX-HR-001-d1",
+    "type": "direct",
+    "question": "¿Hasta qué hora deben asegurar la cobertura los sectores de Trading y Operaciones?",
+    "evidence": [
+      "áreas de Trading y Operaciones deben garantizar cobertura hasta el cierre de liquidaciones (17:30 hs)."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d2",
+    "type": "direct",
+    "question": "¿Cuáles son los planes de cobertura médica que brinda la firma al personal y su familia?",
+    "evidence": [
+      "OSDE 310 o Swiss Medical SMG30 para el colaborador y su grupo familiar primario"
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d3",
+    "type": "direct",
+    "question": "¿Cuál es el procedimiento y qué casilla se utiliza para dar de alta WellHub?",
+    "evidence": [
+      "Se activa mediante la app ingresando el correo corporativo @tex.internal."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d4",
+    "type": "direct",
+    "question": "¿Qué beneficio se otorga en costos de emisión y mantenimiento con billeteras y plásticos Nubi?",
+    "evidence": [
+      "Bonificación del 100% en costos de emisión y mantenimiento en billeteras digitales y tarjetas prepagas Nubi."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d5",
+    "type": "direct",
+    "question": "¿Con qué anticipación y por qué canal debe comunicarse el uso del día libre de cumpleaños?",
+    "evidence": [
+      "previo aviso al líder de área con al menos 48 horas de anticipación a través del portal de People."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d6",
+    "type": "direct",
+    "question": "¿Cuál es el esquema de vacaciones pagas para un empleado con menos de cinco años en la compañía?",
+    "evidence": [
+      "14 días corridos (ampliado a 15 días hábiles conforme a política interna de bienestar corporativo)."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-d7",
+    "type": "direct",
+    "question": "¿Cuántas jornadas corresponden por mudanza y qué constancia se debe entregar?",
+    "evidence": [
+      "2 días hábiles por año calendario presentando constancia o contrato de locación nuevo."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-f1",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuál es el horario habitual de trabajo en la oficina?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y para Trading y Operaciones?",
+    "evidence": [
+      "áreas de Trading y Operaciones deben garantizar cobertura hasta el cierre de liquidaciones (17:30 hs)."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-f7",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué licencias especiales remuneradas ofrece la empresa?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y por paternidad?",
+    "evidence": [
+      "15 días corridos con goce de sueldo a partir del nacimiento o adopción."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p1",
+    "type": "paraphrase",
+    "question": "che cuántas veces por semana puedo laburar desde casa?",
+    "evidence": [
+      "2 días de Home Office a convenir con el líder de equipo"
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p2",
+    "type": "paraphrase",
+    "question": "tengo que poner plata de mi bolsillo cada vez que voy al médico o no me cobran nada?",
+    "evidence": [
+      "100% a cargo de la compañía sin copagos adicionales."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p3",
+    "type": "paraphrase",
+    "question": "a qué lugares para entrenar o piletas puedo meterme sin pagar un mango?",
+    "evidence": [
+      "acceso ilimitado a gimnasios, centros de crossfit, natatorios y apps de mindfulness (Headspace, Calm)"
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p4",
+    "type": "paraphrase",
+    "question": "cuánto me devuelven cuando salgo a morfar al mediodía o cargo nafta?",
+    "evidence": [
+      "25% de reintegro en comercios gastronómicos adheridos en zonas de oficinas (Puerto Madero y Catalinas) y combustible"
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p5",
+    "type": "paraphrase",
+    "question": "hasta cuándo tengo margen para pedir el franco si quiero postergar el festejo?",
+    "evidence": [
+      "Puede tomarse el mismo día de la fecha de natalicio, o dentro del mes calendario en el que cumple años"
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p6",
+    "type": "paraphrase",
+    "question": "puedo partirme el descanso en mini escapadas de dos o tres jornadas nada más?",
+    "evidence": [
+      "Se permite fraccionar el período en tramos no menores a 5 días hábiles, acordados con la gerencia correspondiente."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-HR-001-p7",
+    "type": "paraphrase",
+    "question": "cuánto tiempo me dan para llevar el comprobante de la facu después de haber rendido?",
+    "evidence": [
+      "Se debe presentar el certificado de examen firmado y sellado por la autoridad universitaria dentro de las 72 hs del examen."
+    ],
+    "doc": "TEX-HR-001_Beneficios_Licencias_RRHH.md"
+  },
+  {
+    "id": "TEX-ON-002-d1",
+    "type": "direct",
+    "question": "¿Qué marco legal rige la emisión de obligaciones negociables por parte de empresas en el mercado local?",
+    "evidence": [
+      "emitidos por empresas bajo la Ley de Obligaciones Negociables N° 23.576"
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-d2",
+    "type": "direct",
+    "question": "¿Cuál es el tipo de cambio de referencia aplicable para la integración y cobro de las ONs Dólar Linked?",
+    "evidence": [
+      "integradas y cobradas en pesos al tipo de cambio de la Comunicación \"A\" 3500 BCRA a la fecha de fijación previa al vencimiento."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-d3",
+    "type": "direct",
+    "question": "¿Qué tribunales tienen competencia sobre los contratos de emisión bajo Ley Nueva York?",
+    "evidence": [
+      "Los contratos se rigen por los tribunales federales de Manhattan."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-d4",
+    "type": "direct",
+    "question": "¿Qué monto máximo delimita la participación de inversores minoristas en el tramo no competitivo?",
+    "evidence": [
+      "Exclusivo para inversores minoristas (montos menores a USD 50.000)."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-d5",
+    "type": "direct",
+    "question": "¿Cuáles son los plazos de liquidación habilitados para negociar ONs en el mercado secundario?",
+    "evidence": [
+      "Contado Inmediato (CI) o 24 horas hábiles (T+1)."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-d6",
+    "type": "direct",
+    "question": "¿Qué agencias calificadoras registradas emiten dictámenes técnicos para las colocaciones de oferta pública?",
+    "evidence": [
+      "dictámenes técnicos de calificadoras registradas (Fix SCR, Moody's Local, Untitled Rating)."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿En qué tribunales se dirimen los conflictos legales de las obligaciones negociables corporativas?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y las de ley argentina?",
+    "evidence": [
+      "Se dirimen ante la justicia ordinaria de la Ciudad de Buenos Aires."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-f4",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo presentan sus ofertas los participantes en una licitación de obligaciones negociables?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y en el tramo no competitivo?",
+    "evidence": [
+      "Aceptan la tasa de corte o precio determinado por el tramo competitivo."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p1",
+    "type": "paraphrase",
+    "question": "¿En qué se usa la guita que levantan las compañías al colocar estos instrumentos?",
+    "evidence": [
+      "para financiar inversiones de capital o reestructuración de pasivos."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p2",
+    "type": "paraphrase",
+    "question": "¿Cuánto vienen dejando por año los papeles en billete verde?",
+    "evidence": [
+      "Típicamente pagan cupones de interés semestrales o trimestrales con tasas nominales anuales (TNA) entre el 6.5% y el 9.5%."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p3",
+    "type": "paraphrase",
+    "question": "¿Por qué cotizan más baratas las emisiones que se litigan acá?",
+    "evidence": [
+      "Suelen negociarse con un leve descuento en precio (mayor rendimiento por prima de riesgo local)."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p4",
+    "type": "paraphrase",
+    "question": "¿En qué portal del regulador cuelgan el documento con las condiciones del lanzamiento?",
+    "evidence": [
+      "El prospecto de emisión se publica en la Autopista de Información Financiera (AIF) de la CNV."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p5",
+    "type": "paraphrase",
+    "question": "¿Cómo saca el desk la rentabilidad esperada de los títulos corporativos?",
+    "evidence": [
+      "descontando el flujo futuro de amortización y renta según la curva crediticia del emisor."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-ON-002-p6",
+    "type": "paraphrase",
+    "question": "¿En qué situación le traban el pago de utilidades a los socios?",
+    "evidence": [
+      "Restricción de distribución de dividendos si el ratio de cobertura de intereses cae de 2.0x."
+    ],
+    "doc": "TEX-ON-002_Obligaciones_Negociables_Bonos.md"
+  },
+  {
+    "id": "TEX-OPS-004-d1",
+    "type": "direct",
+    "question": "¿Qué ocurre si el CUIT del ordenante no coincide con el del cliente?",
+    "evidence": [
+      "Si no coincide, el fondo se devuelve a origen en un plazo de 24 horas hábiles."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-d2",
+    "type": "direct",
+    "question": "¿Cuál es el horario de recepción para transferencias en dólares?",
+    "evidence": [
+      "Horario bancario de recepción: 10:00 a 17:00 hs."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-d3",
+    "type": "direct",
+    "question": "¿Cuál es el horario de corte para extracciones en pesos?",
+    "evidence": [
+      "Pesos (ARS): Solicitudes hasta las 16:30 hs se transfieren en el día."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-d4",
+    "type": "direct",
+    "question": "¿Dónde puede el cliente auditar sus tenencias de forma independiente?",
+    "evidence": [
+      "El cliente puede auditar de forma independiente y directa sus tenencias ingresando al portal de inversores de Caja de Valores (portal PUC)."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-d5",
+    "type": "direct",
+    "question": "¿Qué plazo tiene la ALyC receptora para aceptar una transferencia de títulos?",
+    "evidence": [
+      "La ALyC receptora debe aceptar la instrucción en el sistema dentro de las 48 horas hábiles."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-d6",
+    "type": "direct",
+    "question": "¿Cuál es el plazo de liquidación para transferencias internacionales?",
+    "evidence": [
+      "Plazo de liquidación internacional: T+2 (48 horas hábiles)."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo funcionan los depósitos en la cuenta?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y el horario para los dólares?",
+    "evidence": [
+      "Horario bancario de recepción: 10:00 a 17:00 hs."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué necesito para retirar fondos?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y si son dólares?",
+    "evidence": [
+      "Dólares (USD): Solicitudes hasta las 15:30 hs se envían en la rueda de transferencias MEP del BCRA del mismo día."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p1",
+    "type": "paraphrase",
+    "question": "¿Se puede mandar plata desde la cuenta de un amigo o un familiar?",
+    "evidence": [
+      "Quedan absolutamente rechazadas las transferencias provenientes de cuentas de terceros, familiares no cotitulares"
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p2",
+    "type": "paraphrase",
+    "question": "¿Cuánto tarda en impactar la guita que viene en verdes?",
+    "evidence": [
+      "Acreditación habitual: Entre 15 y 45 minutos luego de validada la compensación interbancaria."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p3",
+    "type": "paraphrase",
+    "question": "¿Me cobran algo si saco mis ahorros a mi banco?",
+    "evidence": [
+      "No aplican costos de comisión por extracción hacia cuentas bancarias del titular."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p4",
+    "type": "paraphrase",
+    "question": "¿Cómo se identifica la cuenta de un inversor en la caja de valores?",
+    "evidence": [
+      "Cada comitente recibe un número único de subcuenta custodia en CVSA."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p5",
+    "type": "paraphrase",
+    "question": "¿Qué datos necesito para mover mis papeles a otro agente?",
+    "evidence": [
+      "especie, cantidad nominal, número de depositante destino (número de ALyC) y número de subcuenta comitente destino."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-004-p6",
+    "type": "paraphrase",
+    "question": "¿Qué costo tiene sacar activos afuera?",
+    "evidence": [
+      "Tasa de canje y arancel de transferencia internacional: 0.20% sobre valor nominal con un mínimo de USD 50 por operación."
+    ],
+    "doc": "TEX-OPS-004_Transferencias_SET_Custodia_Liquidaciones.md"
+  },
+  {
+    "id": "TEX-OPS-007-d1",
+    "type": "direct",
+    "question": "¿Cuáles son las resoluciones de la UIF bajo las que se rige el procedimiento de apertura de cuentas?",
+    "evidence": [
+      "UIF (Unidad de Información Financiera - Res. 30/2017, Res. 230/2023 y modificatorias)"
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-d2",
+    "type": "direct",
+    "question": "¿Cuál es la antigüedad máxima permitida para la constancia de CUIT o CUIL al abrir una cuenta?",
+    "evidence": [
+      "Emitida por AFIP/ARCA con antigüedad menor a 60 días."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-d3",
+    "type": "direct",
+    "question": "¿Quién debe autorizar el legajo de un comitente calificado como PEP antes de que pueda operar?",
+    "evidence": [
+      "Si es PEP, el legajo debe ser revisado y aprobado por el Oficial de Cumplimiento (Compliance Officer) antes de fondear."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-d4",
+    "type": "direct",
+    "question": "¿A partir de qué porcentaje de participación o derecho a voto se define a un Beneficiario Final en una sociedad?",
+    "evidence": [
+      "persona física que posea directa o indirectamente el 10% o más del capital social o los derechos de voto."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-d5",
+    "type": "direct",
+    "question": "¿Qué instrumentos tiene autorizados para operar un cliente con perfil de riesgo moderado?",
+    "evidence": [
+      "Bonos soberanos/subsoberanos en pesos (CER, Duales), Obligaciones Negociables (ONs) Hard Dollar Ley Local y Extranjera, FCI T+2."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-d6",
+    "type": "direct",
+    "question": "¿Cuál es el tiempo de respuesta fijado para cuentas que demandan la intervención de Compliance?",
+    "evidence": [
+      "Plazo máximo de dictamen de 48 horas hábiles."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué documentación se exige a una persona física para justificar el origen de sus ingresos?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si trabaja en relación de dependencia?",
+    "evidence": [
+      "Recibo de sueldo (últimos 3 recibos si es relación de dependencia)"
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-f6",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuáles son los plazos máximos de respuesta para la aprobación de cuentas?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si entra a Compliance por tratarse de una PJ?",
+    "evidence": [
+      "Plazo máximo de dictamen de 48 horas hábiles."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p1",
+    "type": "paraphrase",
+    "question": "Che, ¿se puede registrar tanto a particulares como a sociedades comerciales?",
+    "evidence": [
+      "apertura de cuentas comitentes de personas humanas y jurídicas"
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p2",
+    "type": "paraphrase",
+    "question": "Un chabón vino con la denuncia por pérdida del plástico y el papel provisorio, ¿lo podemos ingresar?",
+    "evidence": [
+      "no se aceptan constancias de extravío ni DNI en trámite sin biometría validada vía Renaper"
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p3",
+    "type": "paraphrase",
+    "question": "¿Cuánto tiempo hacia atrás hay que indagar si alguien tuvo algún empleo estatal relevante?",
+    "evidence": [
+      "Formulario mandatorio con detalle de cargos públicos en los últimos 2 años."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p4",
+    "type": "paraphrase",
+    "question": "Che, para una pyme, ¿qué balance del año pasado le tengo que pedir y con qué visto bueno?",
+    "evidence": [
+      "Estados Contables auditados del último ejercicio económico cerrado, con informe de auditor legalizado."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p5",
+    "type": "paraphrase",
+    "question": "Che, un pibe quiere comprar papeles de empresas yanquis y operar derivados, ¿en qué segmento tiene que calificar?",
+    "evidence": [
+      "Habilitado para Renta Variable local (Acciones BYMA), CEDEARs, Opciones financieras (Calls/Puts) y Cauciones tomadoras (apalancamiento)."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-OPS-007-p6",
+    "type": "paraphrase",
+    "question": "Si el usuario mandó la selfie del rostro y no saltó ninguna traba, ¿cuánto demoran en darle el ok?",
+    "evidence": [
+      "Aprobación en el día hábil dentro de las 2 horas de completada la carga biométrica."
+    ],
+    "doc": "TEX-OPS-007_Onboarding_AML_KYC.md"
+  },
+  {
+    "id": "TEX-RSK-010-d1",
+    "type": "direct",
+    "question": "¿Cuál es el objetivo principal de la gestión integral de riesgos respecto al patrimonio y los clientes?",
+    "evidence": [
+      "asegura la solvencia patrimonial de la firma y el resguardo de los activos comitentes"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-d2",
+    "type": "direct",
+    "question": "¿Con qué horizonte temporal y nivel de confianza se computa la metodología oficial de VaR?",
+    "evidence": [
+      "calculado a 1 día hábil con un nivel de confianza del 99% sobre una ventana móvil de 252 observaciones de mercado."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-d3",
+    "type": "direct",
+    "question": "¿Cuánto es el incremento previsto para el Riesgo País en los escenarios de shock extremo?",
+    "evidence": [
+      "Ampliación del Riesgo País en +500 puntos básicos (bps)."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-d4",
+    "type": "direct",
+    "question": "¿A cuántos días de liquidaciones promedio debe equivaler la reserva de liquidez de contingencia?",
+    "evidence": [
+      "equivalente a al menos 3 días del flujo promedio de liquidaciones diarias."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-d5",
+    "type": "direct",
+    "question": "¿Cuál es el porcentaje máximo de patrimonio que una cartera puede asignar a deuda corporativa de una única empresa?",
+    "evidence": [
+      "Ninguna cartera puede concentrar más del 15% de su patrimonio en títulos de deuda de un único emisor privado corporativo"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo actúa el sistema ante pérdidas intradiarias excesivas en una mesa de trading?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si tocan el 100%?",
+    "evidence": [
+      "al 100%, se liquidan de forma automática las posiciones de mayor volatilidad."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-f5",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué tope de concentración rige para los títulos de deuda privada en las carteras administradas?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si son del Estado Nacional?",
+    "evidence": [
+      "salvo Títulos Públicos Soberanos del Estado Nacional"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-p1",
+    "type": "paraphrase",
+    "question": "Che, ¿ante qué sacudones o quilombos de guita nos cubre este esquema?",
+    "evidence": [
+      "frente a volatilidades severas de mercado, shocks de liquidez o incumplimientos crediticios."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-p2",
+    "type": "paraphrase",
+    "question": "Che, si venimos derrapando feo en la jornada, ¿en qué punto nos bajan la persiana para no meter más órdenes?",
+    "evidence": [
+      "Al alcanzarse el 80% del límite, el sistema bloquea la apertura de nuevas posiciones;"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-p3",
+    "type": "paraphrase",
+    "question": "Si revienta la bolsa porteña en un solo día, ¿qué bajón tienen proyectado en los testeos?",
+    "evidence": [
+      "Caída del 15% en el índice accionario S&P Merval en una sola rueda bursátil."
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-p4",
+    "type": "paraphrase",
+    "question": "Si se traba el clearing y nos quedamos secos para cumplir las transferencias, ¿qué auxilio inmediato tenemos pactado con firmas del sector?",
+    "evidence": [
+      "Líneas de descubierto bancario de emergencia acordadas con entidades financieras de primera línea"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-RSK-010-p5",
+    "type": "paraphrase",
+    "question": "Si un comitente quiere fondearse dejando papeles del panel principal, ¿a cuánto le reconocemos el valor de respaldo?",
+    "evidence": [
+      "Bonos soberanos líquidos aforo 80%, Acciones líderes aforo 60%, títulos ilíquidos aforo 0%"
+    ],
+    "doc": "TEX-RSK-010_Gestion_Riesgo_Mercado_Liquidez_Credito.md"
+  },
+  {
+    "id": "TEX-SEC-006-d1",
+    "type": "direct",
+    "question": "¿Qué norma legal establece el secreto bursátil para los empleados y directivos de los agentes registrados?",
+    "evidence": [
+      "Conforme al Artículo 53 de la Ley de Mercado de Capitales N° 26.831"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d2",
+    "type": "direct",
+    "question": "¿Ante qué requerimientos judiciales cede el deber de reserva de la información bursátil?",
+    "evidence": [
+      "El deber de reserva solo cede ante requerimientos formales cursados por jueces competentes en causas penales"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d3",
+    "type": "direct",
+    "question": "¿Qué interfaz de clientes e inteligencia artificial se menciona expresamente resguardada contra accesos no autorizados?",
+    "evidence": [
+      "resguardar los sistemas corporativos e interfaces de clientes (incluido Tex AI) contra accesos no autorizados"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d4",
+    "type": "direct",
+    "question": "¿Qué algoritmo criptográfico y claves se exigen para los tokens de sesión web?",
+    "evidence": [
+      "Las sesiones web utilizan tokens firmados criptográficamente mediante algoritmo HMAC-SHA256 con claves simétricas de alta entropía."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d5",
+    "type": "direct",
+    "question": "¿Cuántos intentos fallidos consecutivos de ingreso provocan el bloqueo temporal en el sistema?",
+    "evidence": [
+      "El sistema bloquea temporalmente la dirección IP o el identificador de cliente tras 5 intentos fallidos consecutivos de ingreso"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d6",
+    "type": "direct",
+    "question": "¿En qué momento exacto es obligatorio bloquear la estación de trabajo física o terminal de trading?",
+    "evidence": [
+      "cada vez que el colaborador se retire del escritorio, sin excepción."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d7",
+    "type": "direct",
+    "question": "¿Bajo qué circunstancias puede el personal de soporte o IT solicitar contraseñas o tokens a un empleado?",
+    "evidence": [
+      "Ningún administrador del sistema, mesa de ayuda ni equipo de IT solicitará jamás a un empleado o cliente su contraseña"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-d8",
+    "type": "direct",
+    "question": "¿Qué medidas técnicas inmediatas componen la fase de aislamiento en una respuesta ante incidentes?",
+    "evidence": [
+      "Desconexión de la terminal afectada de la red interna o suspensión del token de acceso comprometido para frenar la propagación lateral."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-f2",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Tenemos obligación de mantener bajo reserva los saldos y operaciones de nuestros clientes?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y ante un oficio de un juez penal?",
+    "evidence": [
+      "El deber de reserva solo cede ante requerimientos formales cursados por jueces competentes en causas penales"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-f6",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cuáles son las obligaciones de seguridad física al operar dentro de las oficinas?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿y al levantarme a buscar un café?",
+    "evidence": [
+      "cada vez que el colaborador se retire del escritorio, sin excepción."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p1",
+    "type": "paraphrase",
+    "question": "¿De qué cosas que me entero en el laburo diario no le puedo contar a nadie de afuera?",
+    "evidence": [
+      "debe guardar estricta reserva de las operaciones y de las informaciones de las que tome conocimiento con motivo de su actividad."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p2",
+    "type": "paraphrase",
+    "question": "¿Puedo aprovechar la guita que tiene parada un cliente o sus movimientos para sacar una tajada?",
+    "evidence": [
+      "Queda terminantemente prohibido revelar a terceros o utilizar en beneficio propio o ajeno"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p3",
+    "type": "paraphrase",
+    "question": "¿Qué buscan frenar las reglas cuando nos conectamos desde conexiones abiertas o de la calle?",
+    "evidence": [
+      "contra accesos no autorizados en redes públicas e internet, se aplican las siguientes directivas:"
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p4",
+    "type": "paraphrase",
+    "question": "¿Cada cuánto tiempo hay que renovar la llave digital de ingreso si no hubo ningún problema de seguridad?",
+    "evidence": [
+      "Los tokens de acceso deben rotarse trimestralmente o de forma inmediata ante cualquier indicio de compromiso."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p5",
+    "type": "paraphrase",
+    "question": "¿Cuánto tiempo tengo de changüí antes de que me compute las equivocaciones seguidas y me freezee?",
+    "evidence": [
+      "tras 5 intentos fallidos consecutivos de ingreso durante una ventana de 60 segundos."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p6",
+    "type": "paraphrase",
+    "question": "¿Da pegar un sticker con la clave en la pantalla o tirar carpetas de inversores arriba del tablón?",
+    "evidence": [
+      "No está permitido dejar notas adhesivas, contraseñas impresas ni legajos físicos de clientes expuestos a la vista de terceros."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p7",
+    "type": "paraphrase",
+    "question": "¿Adónde mando un mail trucho con links raros que me cayó para que no quede guardado?",
+    "evidence": [
+      "debe reenviarse de inmediato a `security@tex.internal` y eliminarse de la bandeja de entrada."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-SEC-006-p8",
+    "type": "paraphrase",
+    "question": "Después del bardo, ¿cómo nos fijamos si los atacantes se chorearon datos privados?",
+    "evidence": [
+      "Revisión de logs auditados de autenticación y transacciones para verificar si existió fuga de información sensible."
+    ],
+    "doc": "TEX-SEC-006_Seguridad_Informatica_Secreto_Bursatil.md"
+  },
+  {
+    "id": "TEX-TAX-011-d1",
+    "type": "direct",
+    "question": "¿Cuál es el tratamiento en el Impuesto a las Ganancias del resultado de compraventa de títulos públicos soberanos para personas humanas residentes en el país?",
+    "evidence": [
+      "Totalmente exento del Impuesto a las Ganancias para personas humanas residentes en el país (Art. 26 Ley de Impuesto a las Ganancias)."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-d2",
+    "type": "direct",
+    "question": "¿Qué condiciones ante la CNV y respecto al destino de los fondos debe acreditar una ON para que apliquen las exenciones para personas humanas?",
+    "evidence": [
+      "oferta pública autorizada por la CNV, colocación primaria acreditada y los fondos se destinan a inversiones productivas o refinanciación"
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-d3",
+    "type": "direct",
+    "question": "¿Cuál es el tratamiento tributario y la alícuota de retención definitiva sobre los dividendos distribuidos de acciones argentinas?",
+    "evidence": [
+      "Los dividendos distribuidos pagan una retención del 7% como pago definitivo."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-d4",
+    "type": "direct",
+    "question": "¿Cuál es la proporción mínima de activos exentos que debe tener el subyacente de un FCI abierto para gozar de exención en Bienes Personales?",
+    "evidence": [
+      "Cuotapartes de Fondos Comunes de Inversión (FCI) abiertos cuyo activo subyacente esté integrado en al menos un 75% por activos exentos."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-d5",
+    "type": "direct",
+    "question": "¿De qué forma y con qué alícuota liquida la sociedad emisora el impuesto sobre los bienes personales para las acciones locales?",
+    "evidence": [
+      "El gravamen es liquidado por la propia sociedad emisora bajo la figura de Responsable Sustituto a la alícuota especial del 0.50%"
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-f3",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Qué retención de Ganancias se aplica sobre los dividendos cobrados por inversores locales?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y si son cobrados en cable por CEDEARs?",
+    "evidence": [
+      "Los dividendos cobrados en Dólar Cable (especie C) están gravados a la escala progresiva general de Ganancias (hasta el 35%)"
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-f5",
+    "type": "followup",
+    "history": [
+      {
+        "role": "user",
+        "content": "¿Cómo tributan las tenencias de acciones locales en el Impuesto sobre los Bienes Personales?"
+      },
+      {
+        "role": "assistant",
+        "content": "(respuesta previa del asistente sobre ese tema)"
+      }
+    ],
+    "question": "¿Y el comitente particular tiene que pagar algo?",
+    "evidence": [
+      "El tenedor no debe tributar individualmente."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-p1",
+    "type": "paraphrase",
+    "question": "Che, si a un cliente le pagan los servicios periódicos de bonos del gobierno, ¿le descuentan algo o le entra limpio?",
+    "evidence": [
+      "Exentos de retención e imposición."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-p2",
+    "type": "paraphrase",
+    "question": "Si un inversor cobra el rendimiento de deuda corporativa emitida formalmente, ¿le retienen algo frente a esa ganancia?",
+    "evidence": [
+      "Exentos de Impuesto a las Ganancias para personas humanas."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-p3",
+    "type": "paraphrase",
+    "question": "Si un inversor compra y revende papeles domésticos en rueda haciéndose unos mangos, ¿le cobran algo?",
+    "evidence": [
+      "La ganancia de capital por compraventa en BYMA está exenta de Ganancias."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-p4",
+    "type": "paraphrase",
+    "question": "Che, ¿el saldo que un inversor dejó colocado en su entidad financiera rinde cuentas al cierre anual?",
+    "evidence": [
+      "Depósitos bancarios en moneda local o extranjera (cajas de ahorro y plazos fijos)."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "TEX-TAX-011-p5",
+    "type": "paraphrase",
+    "question": "¿Los certificados foráneos que guarda un inversor particular sufren el porcentaje ordinario al cierre del período?",
+    "evidence": [
+      "Computan en el activo del contribuyente gravados a la alícuota general de bienes en el país o en el exterior según corresponda."
+    ],
+    "doc": "TEX-TAX-011_Regimen_Tributario_Inversiones_Financieras.md"
+  },
+  {
+    "id": "none-1",
+    "type": "unanswerable",
+    "question": "¿Cuál es la comisión que cobra la firma por operar opciones sobre acciones de Apple en NASDAQ?",
+    "evidence": []
+  },
+  {
+    "id": "none-2",
+    "type": "unanswerable",
+    "question": "¿Cuántos días de vacaciones corresponden con 12 años de antigüedad?",
+    "evidence": []
+  },
+  {
+    "id": "none-3",
+    "type": "unanswerable",
+    "question": "¿Qué rendimiento anual tuvo el FCI Money Market el año pasado?",
+    "evidence": []
+  },
+  {
+    "id": "none-4",
+    "type": "unanswerable",
+    "question": "¿Se puede operar criptomonedas desde la cuenta comitente?",
+    "evidence": []
+  },
+  {
+    "id": "none-5",
+    "type": "unanswerable",
+    "question": "¿Cuál es el teléfono de la mesa de operaciones para clientes del interior?",
+    "evidence": []
+  },
+  {
+    "id": "none-6",
+    "type": "unanswerable",
+    "question": "¿Cómo se configura MetaTrader 5 para operar futuros de Rofex?",
+    "evidence": []
+  },
+  {
+    "id": "none-7",
+    "type": "unanswerable",
+    "question": "¿Qué tasa paga hoy una caución a 7 días?",
+    "evidence": []
+  },
+  {
+    "id": "none-8",
+    "type": "unanswerable",
+    "question": "¿Cuál es el procedimiento para abrir una cuenta a un menor de edad?",
+    "evidence": []
+  },
+  {
+    "id": "none-9",
+    "type": "unanswerable",
+    "question": "¿La firma tiene oficinas en Córdoba o Rosario?",
+    "evidence": []
+  },
+  {
+    "id": "none-10",
+    "type": "unanswerable",
+    "question": "¿Cuál es el precio objetivo del analista para YPF este trimestre?",
+    "evidence": []
+  },
+  {
+    "id": "none-11",
+    "type": "unanswerable",
+    "question": "¿Se pueden comprar bonos del Tesoro de Estados Unidos (Treasuries) directamente?",
+    "evidence": []
+  },
+  {
+    "id": "none-12",
+    "type": "unanswerable",
+    "question": "¿Qué pasa si me equivoco de CBU al transferir a un banco de otro país que no está en la lista?",
+    "evidence": []
+  }
+]
