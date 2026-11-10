@@ -1,0 +1,8 @@
+name = "tex-ai-app"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-10-01"
+
+# Registro de actividad (visitas, consultas frecuentes, logins, vistas previas del link).
+[[kv_namespaces]]
+binding = "EVENTS"
+id = "<id-de-tu-namespace-kv>"
