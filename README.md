@@ -1,11 +1,13 @@
-# Tex AI — Asistente Inteligente de Operaciones Financieras y Normativas (RAG)
+# Tex AI — Asistente RAG de normativa financiera
 
 [![CI / Security Audit & Quality Verification](https://github.com/santinohicke/tex-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/santinohicke/tex-ai/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4.2-black.svg)](https://nextjs.org/)
+[![Claude API](https://img.shields.io/badge/Claude-API-cc785c.svg)](https://docs.anthropic.com/)
 
-> Sistema corporativo de asistencia operativa, bursátil y de cumplimiento normativo (RAG) impulsado por modelos LLM de última generación, motor de búsqueda semántica con lematización en español y arquitectura de persistencia liviana sin dependencias externas.
+> Asistente de operaciones, mercado de capitales y compliance que responde **solo** con lo que dicen los manuales de la firma, cita cada dato y dice "no está en los manuales" antes que inventar. Búsqueda híbrida (BM25 + embeddings), reranking y generación con **Claude**, medido con una evaluación propia: **Recall@5 de 95%** (antes 58%).
+
+**Demo:** [tex-ai-app.pages.dev](https://tex-ai-app.pages.dev) — sin sesión podés probar las consultas frecuentes; el chat libre y el historial requieren token.
 
 ---
 
@@ -15,70 +17,55 @@ En mesas de dinero, sociedades de bolsa (ALyCs), administradoras de fondos y ent
 
 1. **Dispersión y Complejidad Normativa:** Las regulaciones de mercado (CNV, UIF, BCRA, BYMA, Matba Rofex) y los manuales operativos internos se encuentran fragmentados en decenas de documentos técnicos, circulares y resoluciones extensas.
 2. **Riesgo de Alucinación en Modelos Genéricos:** Los modelos de inteligencia artificial tradicionales tienden a inventar plazos de liquidación, períodos de parking, regímenes impositivos o requisitos de justificación de fondos cuando no disponen de contexto explícito y restringido.
-3. **Altos Costos de Infraestructura y Fuga de Datos:** Las soluciones vectoriales pesadas en la nube introducen costos mensuales recurrentes por tokens de incrustación (embeddings) y exponen documentación confidencial corporativa a bases de datos de terceros.
+3. **Respuestas que no se pueden auditar:** Una respuesta sin fuente no sirve en operaciones ni en compliance: hay que poder ver de qué manual y sección sale cada dato.
 
-### La Solución de Tex AI
-**Tex AI** proporciona una interfaz conversacional profesional, segura y ultra rápida que conecta al operador directamente con la base de manuales y normativas verificadas de la firma. Garantiza respuestas concisas, certeras y desprovistas de alucinaciones, acompañadas por un acordeón interactivo que cita con precisión de sección y documento las fuentes auditadas.
-
----
-
-## 2. Arquitectura del Sistema
-
-```
-                      +---------------------------------------+
-                      |       Interfaz Web (Next.js 16)       |
-                      |   Lienzo Cálido, Sidebar & Accordion  |
-                      +-------------------+-------------------+
-                                          |
-                                    (Fetch / SSE)
-                                          |
-                      +-------------------v-------------------+
-                      |   Capa de Control & Autenticación     |
-                      |   HMAC-SHA256 Token & Rate Limiter    |
-                      +-------------------+-------------------+
-                                          |
-                  +-----------------------+-----------------------+
-                  |                                               |
-        (Búsqueda Semántica)                            (Inferencia LLM)
-                  |                                               |
-+-----------------v-----------------+           +-----------------v-----------------+
-|   Motor Vectorial en Memoria      |           |    Motor de Inferencia LLM        |
-| - Lematización en Español         |           | - Anthropic Claude 3.5 Sonnet     |
-| - Diccionario de Acrónimos        |           | - Streaming Server-Sent Events    |
-| - 14 Manuales / 100 Chunks RAG    |           | - System Prompt Especializado     |
-+-----------------------------------+           +-----------------------------------+
-                  |                                               |
-                  +-----------------------+-----------------------+
-                                          |
-                            (Streaming Server-Sent Events)
-                                          |
-                      +-------------------v-------------------+
-                      |         Persistencia Atómica          |
-                      |       (JSON Store en Servidor)        |
-                      +---------------------------------------+
-```
+### La solución
+Tex AI conecta al operador con los manuales verificados de la firma. Cada respuesta cita su fuente (`[1]`, clickeable), y si la información no está en los manuales lo dice en lugar de inventar.
 
 ---
 
-## 3. Características Principales
+## 2. Arquitectura
 
-### Motor RAG Nativo con Lematización en Español
-* **Stemming Morfológico Inteligente (`stemSpanish`):** Resuelve discrepancias léxicas de género y número en español (por ejemplo: armoniza consultas en singular como *"obligación negociable"* con fuentes en plural como *"Obligaciones Negociables"*).
-* **Diccionario de Acrónimos Bursátiles:** Mapeo y expansión semántica de siglas financieras locales (`ON`, `FCI`, `MEP`, `CCL`, `ROFEX`, `CVSA`, `KYC`, `AML`).
-* **Ponderación Jerárquica y Frase Exacta:** Asignación ponderada de relevancia sobre títulos, secciones y cuerpo documental, garantizando sub-5ms de latencia en la recuperación de contexto sin requerir GPUs dedicadas.
+```
+Navegador ── Cloudflare Pages (proxy + estáticos + copia offline) ── Tailscale Funnel ── servidor (Docker)
+                                                                                         │
+                       Next.js 16 · API /api/chat (sesión HMAC + rate limit) ────────────┘
+                                         │
+     1. Reescritura de repreguntas ──────┤  Claude Haiku, solo si hay historial
+     2. BM25 (español) + embeddings ─────┤  fusión convexa calibrada (0.2 / 0.8)
+     3. Reranking 0-3 de 12 candidatos ──┤  Claude Haiku, salida JSON con esquema
+     4. Decisión de evidencia ───────────┤  sin evidencia → "no está en los manuales" (sin generar)
+     5. Generación con citas [n] ────────┤  Claude Opus, streaming
+     6. Validación de citas + traza ─────┘  visible en el Inspector de cada respuesta
+```
 
-### Respuestas Concisas y Acordeón Desplegable
-* **Acordeón Colapsable:** Las fuentes consultadas se transmiten al concluir la respuesta del modelo y se agrupan en un componente desplegable compacto (`Fuentes consultadas (N)`) para auditoría visual sin saturar la pantalla.
+Detalle de cada decisión en [docs/RAG.md](docs/RAG.md) y métricas en [docs/EVALUATION.md](docs/EVALUATION.md).
 
-### Seguridad y Control de Acceso
-* **Firma Criptográfica de Sesiones:** Cookies firmadas con algoritmo **HMAC-SHA256** y comparación en tiempo constante (`timingSafeEqual`), neutralizando ataques de suplantación o manipulación de estado.
-* **Control de Frecuencia (Rate Limiting Doble):** 
-  - Protección anti-fuerza bruta en login (máximo 5 intentos por minuto por IP).
-  - Límite de consumo en API de chat (máximo 12 consultas por minuto por cliente).
-* **Sanitización de Entorno:** Libre de claves fijas (hardcoded secrets). Configuración 100% aislada mediante variables de entorno.
+---
 
-### Persistencia Atómica en Servidor
-* Almacenamiento local ultraliviano en `data/chats/` mediante índice maestro (`index.json`) y registros JSON individuales por conversación, soportando creación, consulta y eliminación con persistencia en volúmenes Docker.
+## 3. Características
+
+### Recuperación híbrida medida, no supuesta
+* **Fragmentación estructural:** por secciones del manual, con tamaño máximo, solapamiento por bloques y el contexto `Manual > Sección` indexado en cada fragmento.
+* **BM25 + embeddings:** BM25 con stemming y siglas del dominio para términos exactos; embeddings (Voyage AI, el proveedor que recomienda Anthropic para Claude) para preguntas parafraseadas. La forma de combinarlos se eligió con un barrido de parámetros (`scripts/eval/sweep.ts`). Sin clave de Voyage funciona con BM25 + reranking.
+* **Reranking y decisión de evidencia:** Claude puntúa si cada candidato contiene el dato pedido; si ninguno alcanza el umbral, responde que la información no figura.
+* **Repreguntas:** "¿y en dólares?" se reescribe con la conversación antes de buscar.
+* **Citas verificadas:** cada dato lleva su fuente `[n]`, clickeable, y se valida que las citas existan.
+* **Evaluación reproducible:** `npm run eval` mide Recall@K, MRR y nDCG sobre 198 preguntas con respuesta (directas, coloquiales y repreguntas) y 12 sin respuesta.
+
+### Modo público y modo con sesión
+* **Sin sesión:** cuatro consultas frecuentes con respuestas pre-generadas que se resuelven en el navegador: no llaman a la API, no gastan tokens y no guardan nada en el servidor.
+* **Con sesión (token):** chat libre, historial persistente e **Inspector**, que muestra cada etapa del pipeline (consulta reescrita, puntajes BM25 y densos, fusión, reranking, decisión y tiempos). Es solo para usuarios autenticados: en un RAG interno esa información no debería ser pública.
+* **Efecto de tipeo y scroll de lectura:** la vista sigue la respuesta hasta que la pregunta llega arriba y ahí se queda quieta.
+
+### Seguridad y control de acceso
+* **Sesiones firmadas con HMAC-SHA256** y comparación en tiempo constante (`timingSafeEqual`).
+* **Sin secretos en el código:** el token de acceso y el secreto de firma se configuran solo por variables de entorno; sin `ACCESS_TOKEN` no se puede iniciar sesión.
+* **Rate limiting doble:** 5 intentos de login por minuto por IP y 12 consultas de chat por minuto.
+* **Entradas acotadas:** historial y longitud de mensajes limitados antes de llegar al modelo.
+
+### Persistencia liviana
+* Historial en `data/chats/` (índice + un JSON por conversación) y caché de embeddings en `data/index/`, montados como volumen de Docker.
 
 ---
 
@@ -105,72 +92,60 @@ La base documental precargada en `data/policies/` cubre exhaustivamente el ecosi
 
 ---
 
-## 5. Instalación y Puesta en Marcha
+## 5. Instalación
 
-### Requisitos Previos
-* Node.js v20 o superior
-* Docker & Docker Compose (opcional para ejecución en contenedores)
-* Clave de API de [Anthropic Console](https://console.anthropic.com/)
+### Requisitos
+* Node.js 20 o superior
+* Una clave de API de [Claude](https://console.anthropic.com/)
+* Docker y Docker Compose (opcional)
 
-### Paso 1: Clonar el Repositorio
+### Configuración
 ```bash
 git clone https://github.com/santinohicke/tex-ai.git
 cd tex-ai
-```
-
-### Paso 2: Configurar Variables de Entorno
-Copia el archivo de ejemplo y completa tus claves:
-```bash
-cp .env.example .env.local
-```
-Edita `.env.local`:
-```env
-ANTHROPIC_API_KEY=tu_clave_de_anthropic_aqui
-CLAUDE_MODEL=claude-3-5-sonnet-20241022
-ACCESS_TOKEN=tu_token_de_acceso_aqui
-AUTH_SECRET=cadena_aleatoria_de_al_menos_32_caracteres_para_firmar_cookies
-```
-
-### Paso 3: Instalar Dependencias y Ejecutar en Desarrollo
-```bash
+cp .env.example .env.local   # completá ANTHROPIC_API_KEY, ACCESS_TOKEN y AUTH_SECRET
 npm install
 npm run dev
 ```
-La aplicación estará disponible en `http://localhost:3000`.
+La aplicación queda en `http://localhost:3000`.
+
+| Variable | Para qué |
+|---|---|
+| `ANTHROPIC_API_KEY` | Clave de la API de Claude (obligatoria) |
+| `ACCESS_TOKEN` | Token para iniciar sesión en la interfaz |
+| `AUTH_SECRET` | Secreto para firmar las cookies de sesión (32+ caracteres aleatorios) |
+| `CLAUDE_MODEL` | Modelo de generación (por defecto `claude-opus-5-5`) |
+| `RAG_FAST_MODEL` | Modelo para reescritura y reranking (por defecto `claude-haiku-5-5`) |
+| `VOYAGE_API_KEY` | Opcional: activa la búsqueda densa con embeddings de Voyage AI |
 
 ---
 
 ## 6. Despliegue con Docker
 
-Para desplegar la aplicación en producción con contenedor optimizado sobre Alpine Linux:
-
 ```bash
 docker compose up -d --build
 ```
 
-El servicio iniciará en el puerto `3050` con healthcheck automático sobre `/api/status` y volumen montado en `./data` para persistencia de chats e ingesta en caliente de políticas.
+El servicio queda en el puerto `3050`, con healthcheck sobre `/api/status` y el volumen `./data` para historial, manuales y caché de embeddings.
+
+### Publicarlo desde un servidor propio
+La demo corre en un servidor casero: [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) lo expone por HTTPS y un worker de Cloudflare Pages ([`deploy/cloudflare/`](deploy/cloudflare/)) hace de puerta de entrada:
+* sirve los archivos estáticos desde Cloudflare, así el servidor solo atiende el HTML y la API;
+* si el servidor no responde, entrega una copia estática de la página y la API responde "en mantenimiento": el modo público sigue funcionando;
+* registra actividad anónima (visitas, consultas frecuentes probadas, vistas previas del link) en Cloudflare KV, sin cookies ni IPs.
 
 ---
 
-## 7. Pruebas Automatizadas y Auditoría de Ingesta
-
-El proyecto incluye un pipeline en Python para validar la integridad estructural y cobertura de entidades de las políticas:
+## 7. Evaluación y pruebas
 
 ```bash
-python scripts/test_pipeline.py
-```
-
-Salida esperada:
-```
-...
-----------------------------------------------------------------------
-Ran 3 tests in 0.250s
-
-OK
+npm run eval                 # métricas de recuperación (ver docs/EVALUATION.md)
+node scripts/eval/sweep.ts   # barrido de parámetros de la fusión
+python scripts/test_pipeline.py   # auditoría estructural de los manuales
 ```
 
 ---
 
 ## 8. Licencia
 
-Este proyecto está distribuido bajo la licencia **MIT**. Consulte el archivo `LICENSE` para más información.
+Distribuido bajo la licencia **MIT**. Ver `LICENSE`.
