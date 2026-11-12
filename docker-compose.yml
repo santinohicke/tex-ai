@@ -10,9 +10,11 @@ services:
     environment:
       - NODE_ENV=production
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-3-5-sonnet-20241022}
-      - ACCESS_TOKEN=${ACCESS_TOKEN:-Tex#Sec2026!Global_DemoKey}
-      - AUTH_SECRET=${AUTH_SECRET:-your-random-hmac-sha256-signing-secret}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-opus-5-5}
+      - RAG_FAST_MODEL=${RAG_FAST_MODEL:-claude-haiku-5-5}
+      - VOYAGE_API_KEY=${VOYAGE_API_KEY:-}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - AUTH_SECRET=${AUTH_SECRET}
       - PORT=3050
     volumes:
       - ./data:/app/data
