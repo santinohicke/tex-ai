@@ -37,3 +37,9 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Caché local de embeddings de la evaluación
+scripts/eval/.embeddings-cache.json
+data/index/
+*.tsbuildinfo
+next-env.d.ts
