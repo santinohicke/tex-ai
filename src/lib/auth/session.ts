@@ -2,12 +2,13 @@ import { cookies } from 'next/headers';
 import crypto from 'crypto';
 
 const SESSION_COOKIE = 'tex_auth_token';
-const AUTH_SECRET =
-  process.env.AUTH_SECRET || 'tex_sec_hmac_sign_99f4d2a1b7e80c45d3e2a1b9f8e7';
-const SECURE_TOKEN =
-  process.env.ACCESS_TOKEN ||
-  process.env.ACCESS_PIN ||
-  'Tex#Sec2026!Global_98xK';
+// Sin valores por defecto: el secreto y el token se configuran solo por variables de entorno.
+// Si falta AUTH_SECRET se usa uno aleatorio por proceso (las sesiones no sobreviven un reinicio).
+const AUTH_SECRET = process.env.AUTH_SECRET || crypto.randomBytes(32).toString('hex');
+if (!process.env.AUTH_SECRET) {
+  console.warn('AUTH_SECRET no configurado: se usa un secreto aleatorio temporal.');
+}
+const SECURE_TOKEN = (process.env.ACCESS_TOKEN || '').trim();
 
 export interface UserSession {
   authenticated: boolean;

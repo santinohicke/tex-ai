@@ -50,14 +50,15 @@ export async function POST(req: NextRequest) {
     const { token, pin, name = 'Usuario' } = body;
     const provided = (token || pin || '').trim();
 
-    const envTokens = [
-      process.env.ACCESS_TOKEN,
-      process.env.ACCESS_PIN,
-      SECURE_TOKEN,
-      'Adcap#Sec2026!FinDesk_9xK',
-    ]
-      .filter(Boolean)
-      .map((t) => t!.trim());
+    const envTokens = [process.env.ACCESS_TOKEN, process.env.ACCESS_PIN, SECURE_TOKEN]
+      .filter((t): t is string => Boolean(t && t.trim()))
+      .map((t) => t.trim());
+    if (envTokens.length === 0) {
+      return NextResponse.json(
+        { error: 'El acceso con token no está configurado en este servidor (ACCESS_TOKEN).' },
+        { status: 503 }
+      );
+    }
 
     const isAuthorized = Boolean(provided) && envTokens.includes(provided);
 
