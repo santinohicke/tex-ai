@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Self-check unit test for Adcap AI Policy Ingestion & Audit Pipeline.
+Self-check unit test for Tex AI Policy Ingestion & Audit Pipeline.
 """
 
 import unittest
