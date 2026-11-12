@@ -121,7 +121,7 @@ class PolicyAuditor:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Adcap AI Policy Ingestion & Audit Pipeline")
+    parser = argparse.ArgumentParser(description="Tex AI Policy Ingestion & Audit Pipeline")
     parser.add_argument(
         "--dir",
         type=str,
@@ -140,7 +140,7 @@ def main():
         return
 
     print("=" * 68)
-    print(" ADCAP GRUPO FINANCIERO — AUDITORÍA AUTOMATIZADA DE MANUALES RAG")
+    print(" TEX AI — AUDITORÍA AUTOMATIZADA DE MANUALES RAG")
     print("=" * 68)
     print(f"Total Documentos Auditados: {report['total_documents']}")
     print(f"Chunks Estimados Indexables: {report['estimated_chunks']}")
